@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block title %}投稿{% endblock title %}
+
+{% block content %}
+    <h3 class="page-header">Daily Reports</h3>
+    <input type="button" onclick="location.href='../write_reports'"value="トップ画面">
+    <input type="button" onclick="location.href='../../log_in'"value="ログイン">
+    {# 新規作成 #}
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">投稿</button>
+    </form>
+{% endblock %}
