@@ -1,15 +1,15 @@
-<!DOCTYPE html>
 {% extends "base.html" %}
-{% block title %}投稿完了{% endblock title %}
+{% block title %}詳細{% endblock title %}
 
 {% block content %}
+<div class="container">
     <h3 class="page-header">Daily Reports</h3>
     <input type="button" onclick="location.href='../../write_reports'"value="トップ画面">
     <input type="button" onclick="location.href='../../log_in'"value="ログイン">
 
-    {#  #}
-    <form action="" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-    </form>
+    <hr>
+    <h1>{{ report.title }}</h1>
+    {{ report.content|linebreaks }}
+    <hr>
+</div>
 {% endblock %}

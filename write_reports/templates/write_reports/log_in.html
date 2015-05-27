@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 {% extends "base.html" %}
 
 {% block content %}
@@ -8,7 +7,7 @@
 {% endif %}
 
 <input type="button" onclick="location.href='../write_reports/'"value="トップ画面">
-<input type="button" onclick="location.href='../write_reports/edit_report/'"value="新規作成">
+<input type="button" onclick="location.href='../write_reports/create_report/'"value="新規作成">
 
 <form method="post" action="{% url 'django.contrib.auth.views.login' %}">
 {% csrf_token %}

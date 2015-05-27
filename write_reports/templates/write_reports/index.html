@@ -10,20 +10,30 @@ table {
 </style>
 {% endblock %}
 
+
 {% block content %}
+
     <h3 class="page-header">Daily Reports</h3>
     {# <a href="{% url 'write_reports:edit_repoet' %}" class="btn btn-default btn-sm">New Report</a> #}
-    <input type="button" onclick="location.href='edit_report'"value="新規作成">
+    <input type="button" onclick="location.href='create_report'"value="新規作成">
     <input type="button" onclick="location.href='../log_in'"value="ログイン">
+    {% if error_message %}<p>{{error_message}}</p>{% endif %}
     <table class="table table-striped table-bordered">
       <thead>
       </thead>
       <tbody>
         {% for report in latest_report_list %}
         <tr>
-          <td>{{ report.date }}</td>
-          <td>{{ report.user }}</td>
-          <td>{{ report.content }}</td>
+          <td><button onclick="location.href='{% url 'show_detail_of_report' report.id %}'" class="btn btn-link">
+              {{ report.user }}　{{ report.title }}　({{ report.date }})　</button></td>
+
+          {% if report.user == request.user %}
+          <td>
+              <button onclick="location.href='{% url 'edit_report' report.id %}'" class="btn btn-primary">編集</button>
+              <button onclick="location.href='{% url 'delete_report' report.id %}'" class="btn btn-danger">削除</button>
+          </td>
+          {% else %}
+          {% endif %}
         </tr>
         {% endfor %}
       </tbody>
