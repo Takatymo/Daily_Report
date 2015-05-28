@@ -4,7 +4,7 @@
 
 {% block content %}
 
-    {# 新規作成 #}
+    {# 新規作成 & 編集 #}
     <form action="" method="POST">
         {% csrf_token %}
         {{ form.as_p }}
