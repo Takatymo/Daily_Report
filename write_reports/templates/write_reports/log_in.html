@@ -1,13 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h3 class="page-header">Daily Reports</h3>
+
 {% if form.errors %}
 <p>Your username and password didn't match. Please try again.</p>
 {% endif %}
-
-<input type="button" onclick="location.href='../write_reports/'"value="トップ画面">
-<input type="button" onclick="location.href='../write_reports/create_report/'"value="新規作成">
 
 <form method="post" action="{% url 'django.contrib.auth.views.login' %}">
 {% csrf_token %}

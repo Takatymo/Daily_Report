@@ -13,6 +13,44 @@
 </head>
 <body>
   <div class="container">
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{% url 'index' %}">Daily Reports</a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <!-- 3.リストの配置 -->
+            <ul class="nav navbar-nav">
+                <li><a href="{% url 'create_report' %}">新規作成</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                {% if user.is_authenticated %}
+                <li><a href="{% url 'log_out' %}">ログアウト</a></li>
+                {% else %}
+                <li><a href="{% url 'log_in' %}">ログイン</a></li>
+                {% endif %}
+            </ul>
+            <!-- 4.ボタン -->
+            {#<button type="button" class="btn btn-default navbar-btn">#}
+            {#    <span class="glyphicon glyphicon-envelope"></span>#}
+            {#</button> #}
+            <p class="navbar-text">日報検索</p>
+            <form class="navbar-form" method="post" action="{% url 'write_reports.views.search_reports' %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input type="text" name="keyword" class="form-control" placeholder="キーワード">
+                <button type="submit" class="btn btn-info">検索</button>
+                </div>
+            </form>
+          </div>
+    </div>
+</nav>
     {% block content %}
       {{ content }}
     {% endblock %}

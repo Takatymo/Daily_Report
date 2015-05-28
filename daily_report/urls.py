@@ -20,7 +20,7 @@ urlpatterns = [
     url(r'^write_reports/', include('write_reports.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^log_in/$', 'django.contrib.auth.views.login',
-        {'template_name': 'write_reports/log_in.html'}),
+        {'template_name': 'write_reports/log_in.html'}, name='log_in'),
     url(r'^log_out/$', 'django.contrib.auth.views.logout',
-        {'template_name': 'write_reports/log_out.html'})
+        {'template_name': 'write_reports/log_out.html'}, name='log_out')
 ]
