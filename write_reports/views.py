@@ -2,13 +2,13 @@ from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, get_object_or_404, redirect
 from .forms import form_for_edit
-from .models import Report
+from .models import Report, NewUser
 from datetime import datetime
 from django.db.models import Q
 
 
 def index(request):
-    latest_reports = Report.objects.order_by('id').reverse()[:20]
+    latest_reports = Report.objects.order_by('id').reverse()[:10]
     context = {'reports': latest_reports}
     return render(request, 'write_reports/index.html', context)
 
@@ -68,7 +68,17 @@ def delete_report(request, report_id=None):
 
 def search_reports(request):
     keyword = request.POST['keyword']
-    reports_searched = Report.objects.filter(Q(title__contains=keyword) | Q(content__contains=keyword))
+    if keyword == "":
+         return render(request, 'write_reports/index.html', {'reports': [], 'error_message': "No keyword is inputted."})
 
-    #メッセージ処理をしたい。
-    return render(request, 'write_reports/index.html', {'reports': reports_searched})
+    else:
+
+        reports_searched = Report.objects.order_by('id').filter(Q(title__contains=keyword)
+                                                                | Q(content__contains=keyword))# Q(user__name__contains=keyword)も加えたい
+
+        reports_searched = reports_searched.reverse()[:10]
+
+
+
+        #メッセージ処理をしたい。
+        return render(request, 'write_reports/index.html', {'reports': reports_searched})

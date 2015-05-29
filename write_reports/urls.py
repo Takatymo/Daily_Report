@@ -8,5 +8,5 @@ urlpatterns = [
     url(r'^create_report/$', views.create_report, name='create_report'),
     url(r'^(?P<report_id>[0-9]+)/delete_report/$', views.delete_report, name='delete_report'),
     url(r'^(?P<report_id>[0-9]+)$', views.show_detail_of_report, name='show_detail_of_report'),
-    url(r'^search_reports/$', views.search_reports, name='search_report'),
+    url(r'^search_reports/$', views.search_reports, name='search_reports'),
 ]
